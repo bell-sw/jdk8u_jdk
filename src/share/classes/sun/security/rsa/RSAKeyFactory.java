@@ -103,6 +103,9 @@ public final class RSAKeyFactory extends KeyFactorySpi {
      * Used by RSASignature and RSACipher.
      */
     public static RSAKey toRSAKey(Key key) throws InvalidKeyException {
+        if (key == null) {
+            throw new InvalidKeyException("Key must not be null");
+        }
         if ((key instanceof RSAPrivateKeyImpl) ||
             (key instanceof RSAPrivateCrtKeyImpl) ||
             (key instanceof RSAPublicKeyImpl)) {
