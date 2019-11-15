@@ -26,7 +26,7 @@
  * @test
  * @bug 8189131 8198240 8191844 8189949 8191031 8196141 8204923 8195774 8199779
  *      8209452 8209506 8210432 8195793 8216577 8222089 8222133 8222137 8222136
- *      8223499 8225392
+ *      8223499 8225392 8232019
  * @summary Check root CA entries in cacerts file
  */
 import java.io.ByteArrayInputStream;
@@ -57,12 +57,7 @@ public class VerifyCACerts {
     // SHA-256 of cacerts, can be generated with
     // shasum -a 256 cacerts | sed -e 's/../&:/g' | tr '[:lower:]' '[:upper:]' | cut -c1-95
     private static final String CHECKSUM
-            = "4E:21:94:7C:1D:49:28:BB:34:B0:40:DF:AE:19:B4:41:C6:B5:8A:EE:EB:D5:DE:B4:EF:07:AF:63:18:73:A6:FE";
-
-    // SHA-256 of cacerts, can be generated with
-    // shasum -a 256 cacerts | sed -e 's/../&:/g' | tr '[:lower:]' '[:upper:]' | cut -c1-95
-    private static final String CHECKSUM
-            = "4E:21:94:7C:1D:49:28:BB:34:B0:40:DF:AE:19:B4:41:C6:B5:8A:EE:EB:D5:DE:B4:EF:07:AF:63:18:73:A6:FE";
+            = "C7:BE:67:B5:2E:35:17:5E:95:3E:61:68:F8:CF:D0:FB:7F:21:63:91:1E:C2:4D:A2:FE:1B:D4:D4:FA:86:52:7E";
 
     // map of cert alias to SHA-256 fingerprint
     @SuppressWarnings("serial")
@@ -247,6 +242,7 @@ public class VerifyCACerts {
                     "2C:AB:EA:FE:37:D0:6C:A2:2A:BA:73:91:C0:03:3D:25:98:29:52:C4:53:64:73:49:76:3A:3A:B5:AD:6C:CF:69");
             put("luxtrustglobalroot2ca [jdk]",
                     "54:45:5F:71:29:C2:0B:14:47:C4:18:F9:97:16:8F:24:C5:8F:C5:02:3B:F5:DA:5B:E2:EB:6E:1D:D8:90:2E:D5");
+<<<<<<< HEAD
             put("amazonrootca1 [jdk]",
                     "8E:CD:E6:88:4F:3D:87:B1:12:5B:A3:1A:C3:FC:B1:3D:70:16:DE:7F:57:CC:90:4F:E1:CB:97:C6:AE:98:19:6E");
             put("amazonrootca2 [jdk]",
@@ -255,6 +251,8 @@ public class VerifyCACerts {
                     "18:CE:6C:FE:7B:F1:4E:60:B2:E3:47:B8:DF:E8:68:CB:31:D0:2E:BB:3A:DA:27:15:69:F5:03:43:B4:6D:B3:A4");
             put("amazonrootca4 [jdk]",
                     "E3:5D:28:41:9E:D0:20:25:CF:A6:90:38:CD:62:39:62:45:8D:A5:C6:95:FB:DE:A3:C2:2B:0B:FB:25:89:70:92");
+=======
+>>>>>>> 697e535... 8232019: Add LuxTrust certificate updates to the existing root program
         }
     };
 
@@ -284,6 +282,7 @@ public class VerifyCACerts {
         if (!checksum.equals(CHECKSUM)) {
             atLeastOneFailed = true;
             System.err.println("ERROR: wrong checksum\n" + checksum);
+            System.err.println("Expected checksum\n" + CHECKSUM);
         }
 
         KeyStore ks = KeyStore.getInstance("JKS");
